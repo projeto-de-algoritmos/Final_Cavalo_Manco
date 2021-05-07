@@ -1,0 +1,13 @@
+.instructions{
+    width:50vw;
+    box-sizing: border-box;
+    padding: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.instructions-text{
+    width: 40vw;
+    font-size: 2.5rem;
+    font-family: 'Nunito', sans-serif;
+}

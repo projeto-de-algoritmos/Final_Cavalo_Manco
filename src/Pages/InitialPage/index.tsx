@@ -1,11 +1,17 @@
 import React from "react";
 import "./styles.css";
-import Header from "../../Components/Header";
+import Navbar from "../../Components/Navbar";
+import Instructions from "../../Components/Instructions";
+import GameTable from "../../Components/GameTable";
 function App() {
   return (
-    <div className="navbar">
-      <Header />
-    </div>
+    <>
+      <Navbar/>
+    <section className="content">
+      <Instructions/>
+      <GameTable/>
+    </section>
+    </>
   );
 }
 
