@@ -1,2 +1,40 @@
 .gametable{
+    width:50vw;
+    box-sizing: border-box;
+    padding: 1vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.board{
+    margin: 5vh 0vh;
+    display: flex;
+    width:72vh;
+    height: 72vh;
+    background-color: black;
+}
+.row{
+    display: flex;
+}
+.button-container{
+    display: flex;
+    align-items: space-between;
+    justify-content: space-around;
+}
+.button-container button{
+    width: 15vw;
+    height: 7vh;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 0.3rem;
+}
+.start-button{
+    background-color: #08A550;
+}
+
+.reset-button{
+    background-color: #DF1C3F;
 }
