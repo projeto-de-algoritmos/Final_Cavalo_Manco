@@ -1,5 +1,6 @@
 .navbar{
   background-color: #826038;
-  width: 100vw;
+  align-self: stretch;
   height: 10vh;
+  padding-left: 1.5rem;
 }
