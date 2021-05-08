@@ -1,14 +1,13 @@
 import "./styles.css";
-import Button from '@material-ui/core/Button';
 import Field from '../Field';
-
-
+import {useState} from 'react';
 
 function GameTable(){
     const fieldHorizontal = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
     const fieldVertical = ['1', '2', '3', '4', '5', '6', '7', '8'];
     const colors = ['#CFA75A', '#826038'];
-
+    const [selectedField, setSelectedField] = useState('');
+    
     const getColor = (letter: string, number: string) => {
         const stringNum = letter.charCodeAt(0);
         const numberNum = parseInt(number);
@@ -17,13 +16,27 @@ function GameTable(){
         else
             return colors[1];
     }
-    
+
+    const selectField = (position: string) => {
+        if(position!=="A2"){
+            setSelectedField(position);
+        }
+    }
+
     const renderField = () => {
         return (
             <div className="column">
                 {fieldHorizontal.map((letter)=>(   
                     <div className="row">
-                        {fieldVertical.map((number)=><Field key={letter+number} color={getColor(letter, number)}/>)}
+                        {fieldVertical.map((number)=>(
+                            <Field 
+                                key={letter+number} 
+                                pos={`${letter}${number}`}
+                                color={getColor(letter, number)}
+                                isSelected={selectedField===`${letter}${number}`}
+                                onPress={()=> selectField(`${letter}${number}`)}
+                                />
+                            ))}
                     </div>
                     ))
                 }

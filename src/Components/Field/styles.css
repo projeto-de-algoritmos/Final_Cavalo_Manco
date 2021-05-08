@@ -2,4 +2,15 @@
     height: 9vh;
     width: 9vh;
     border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ball{
+    height: 5vh;
+    width: 5vh;
+    border-radius: 2.5vh;
+    background-color: #08A550;
+
 }
