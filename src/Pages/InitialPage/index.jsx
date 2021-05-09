@@ -6,11 +6,11 @@ import GameTable from "../../Components/GameTable";
 function App() {
   return (
     <>
-      <Navbar/>
-    <section className="content">
-      <Instructions/>
-      <GameTable/>
-    </section>
+      <Navbar />
+      <section className="content">
+        <Instructions />
+        <GameTable />
+      </section>
     </>
   );
 }
