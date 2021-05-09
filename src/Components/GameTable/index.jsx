@@ -1,11 +1,11 @@
 import "./styles.css";
 import Field from "../Field";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import KnightBoard from "../../utils/KnightBoard";
 import stringParser from "../../utils/stringParser";
-import Modal from '@material-ui/core/Modal';
+import Modal from "@material-ui/core/Modal";
 import infoIcon from "../../assets/info-icon.svg";
-import {modalText} from "../../assets/text"
+import { modalText } from "../../assets/text";
 
 function GameTable() {
   const fieldHorizontal = ["0", "1", "2", "3", "4", "5", "6", "7"];
@@ -17,18 +17,25 @@ function GameTable() {
   const [horsePosition, setHorsePosition] = useState("01");
   const [radio, setRadio] = useState("1");
   const [showModal, setShowModal] = useState(false);
-  
-  const renderHorsePosition = () => (
-    <div >
-      <h1 className="positionTitle">Posição atual do cavalo</h1>
-      <h2 className="positionText">{letters[parseInt(horsePosition[1])]}{parseInt(horsePosition[0])+1}</h2>
-    </div>
-  )
-  
 
-  useEffect(()=>{
-    setPath([])
-  }, [horsePosition])
+  const renderHorsePosition = () => (
+    <div>
+      <h1 className="positionTitle">Posição atual do cavalo</h1>
+      <h2 className="positionText">
+        {letters[parseInt(horsePosition[1])]}
+        {parseInt(horsePosition[0]) + 1}
+        {selectedField
+          ? ` - ${letters[parseInt(selectedField[1])]}${
+              parseInt(selectedField[0]) + 1
+            }`
+          : null}
+      </h2>
+    </div>
+  );
+
+  useEffect(() => {
+    setPath([]);
+  }, [horsePosition]);
 
   const getColor = (numCol, numRow) => {
     const intRow = parseInt(numCol);
@@ -40,24 +47,23 @@ function GameTable() {
 
   const handleRadio = (e) => {
     setRadio(e.target.value);
-  }
+  };
 
   const selectField = (position) => {
-    if (radio === "0" && position!==selectedField) {
+    if (radio === "0" && position !== selectedField) {
       setHorsePosition(position);
-    }
-    else if(radio === "1" && position!==horsePosition){
+    } else if (radio === "1" && position !== horsePosition) {
       setSelectedField(position);
     }
   };
 
-  const handleOpen = () =>{
+  const handleOpen = () => {
     setShowModal(true);
     console.log(true);
-  }
-  const handleClose = () =>{
+  };
+  const handleClose = () => {
     setShowModal(false);
-  }
+  };
   const renderField = () => {
     return (
       <div className="column">
@@ -71,14 +77,13 @@ function GameTable() {
                 isSelected={selectedField === `${numberColumn}${numberRow}`}
                 path={path}
                 timer={path.indexOf(`${numberColumn}${numberRow}`)}
-                isHorse={`${numberColumn}${numberRow}`===horsePosition}
+                isHorse={`${numberColumn}${numberRow}` === horsePosition}
                 onPress={() => selectField(`${numberColumn}${numberRow}`)}
               />
             ))}
           </div>
         ))}
       </div>
-   
     );
   };
 
@@ -89,10 +94,9 @@ function GameTable() {
           <p onClick={handleClose}>X</p>
         </div>
         <div className="modalContent">
-          <h2 id="simple-modal-title">Como funciona</h2><br/>
-          <p id="simple-modal-description">
-          {modalText}
-          </p>
+          <h2 id="simple-modal-title">Como funciona</h2>
+          <br />
+          <p id="simple-modal-description">{modalText}</p>
         </div>
       </div>
     </div>
@@ -105,34 +109,45 @@ function GameTable() {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-     >
+      >
         {body}
       </Modal>
-      <div className="board-container">
-
-      </div>
+      <div className="board-container"></div>
       <div className="board">{renderField()}</div>
       <div className="button-container">
-      {renderHorsePosition()}
+        {renderHorsePosition()}
         <div className="radio-container">
           <div>
-            <input type="radio" value="0" onChange={(e) => handleRadio(e)} checked={radio === "0"}/><label>Posição inicial</label>
+            <input
+              type="radio"
+              value="0"
+              onChange={(e) => handleRadio(e)}
+              checked={radio === "0"}
+            />
+            <label>Posição inicial</label>
           </div>
           <div>
-            <input type="radio" value="1" onChange={(e) => handleRadio(e)} checked={radio === "1"}/><label>Posição final</label>
+            <input
+              type="radio"
+              value="1"
+              onChange={(e) => handleRadio(e)}
+              checked={radio === "1"}
+            />
+            <label>Posição final</label>
           </div>
         </div>
 
         <button
           className="start-button"
           disabled={!selectedField}
-          onClick={() => {            
-            setPath(stringParser(
+          onClick={() => {
+            setPath(
+              stringParser(
                 KnightBoard.bellmanFord(
-                    parseInt(horsePosition[0]), 
-                    parseInt(horsePosition[1]), 
-                    parseInt(selectedField[0]), 
-                    parseInt(selectedField[1])
+                  parseInt(horsePosition[0]),
+                  parseInt(horsePosition[1]),
+                  parseInt(selectedField[0]),
+                  parseInt(selectedField[1])
                 )
               )
             );
@@ -141,7 +156,7 @@ function GameTable() {
           GERAR CAMINHO
         </button>
       </div>
-        <img src={infoIcon} className="icon" alt="" onClick={handleOpen}/>
+      <img src={infoIcon} className="icon" alt="" onClick={handleOpen} />
     </section>
   );
 }
