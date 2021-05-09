@@ -18,7 +18,7 @@ O objetivo do projeto é a aplicação dos conteúdos da disciplina Projeto de A
 <img src="./assets/print3.png">
 
 ## Instalação 
-**Linguagem**: TypeScript<br>
+**Linguagem**: JavaScript<br>
 **Framework**: ReactJS<br>
 Para rodar o projeto você precisará instalar na sua máquina:
 - [Node.js](https://nodejs.org/en/)
