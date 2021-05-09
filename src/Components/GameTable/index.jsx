@@ -5,7 +5,6 @@ import KnightBoard from "../../utils/KnightBoard";
 import stringParser from "../../utils/stringParser";
 import Modal from '@material-ui/core/Modal';
 import infoIcon from "../../assets/info-icon.svg";
-import { makeStyles } from '@material-ui/core/styles';
 import {modalText} from "../../assets/text"
 
 function GameTable() {
