@@ -4,7 +4,7 @@ import { useState } from "react";
 function Field(props) {
   const [wait, setWait] = useState(true);
   const renderContent = () => {
-    if (props.pos === "01") {
+    if (props.isHorse === true) {
       return <img src={chessHorse} alt="" />;
     } else if (props.isSelected) {
       return <div className="ball" />;
