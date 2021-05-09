@@ -8,4 +8,6 @@
   width: 100vw;
   height: 90vh;
   display: flex;
+  padding: 0 1vw;
+  box-sizing: border-box;
 }

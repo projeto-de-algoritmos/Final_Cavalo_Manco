@@ -1,12 +1,12 @@
-.gametable {
-  width: 50vw;
+.GameTable {
+  width: 100vw;
   box-sizing: border-box;
   padding: 1vw;
-  height: 100vh;
+  height: 80vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
+
+
 .board {
   margin: 5vh 0vh;
   display: flex;
@@ -19,8 +19,17 @@
 }
 .button-container {
   display: flex;
-  align-items: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width:50vw;
+}
+
+.radio-container{
+  display: flex;
+  align-items: space-around;
   justify-content: space-around;
+  width: 20vw;
 }
 
 button:hover {
@@ -56,4 +65,59 @@ button:active {
 .reset-button:disabled {
   background-color: #df1c4080;
   cursor: auto;
+}
+
+.icon {
+  width: 3vw;
+  height: 3vw;
+}
+
+.modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.closeModal {
+  align-self: flex-start;
+  justify-self: flex-start;
+  padding:1vw;
+  font-weight: bold;
+}
+
+.closeModal:hover{
+  cursor: pointer;
+}
+
+.modalContent{
+  padding: 3vw;
+}
+.modal{
+  display: flex;
+  background-color: white;
+  border-radius: 25px;
+  width: 30vw;
+  height: 30vh;
+}
+
+.positionDiv {
+  display: flex;
+  align-content: center;
+}
+
+.positionText{
+  text-align: center;
+  margin-top: 1rem;
+  font-family: "Nunito", sans-serif;
+  font-size: 2rem;
+}
+.positionTitle{
+  font-size: 3.5rem;
+  font-family: "Nunito", sans-serif;
+}
+
+label{
+  font-size:  1.5rem;
+  font-family: "Nunito", sans-serif;
 }

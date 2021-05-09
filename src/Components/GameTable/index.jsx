@@ -3,16 +3,30 @@ import Field from "../Field";
 import { useState,useEffect } from "react";
 import KnightBoard from "../../utils/KnightBoard";
 import stringParser from "../../utils/stringParser";
+import Modal from '@material-ui/core/Modal';
+import infoIcon from "../../assets/info-icon.svg";
+import { makeStyles } from '@material-ui/core/styles';
+import {modalText} from "../../assets/text"
 
 function GameTable() {
   const fieldHorizontal = ["0", "1", "2", "3", "4", "5", "6", "7"];
   const fieldVertical = ["0", "1", "2", "3", "4", "5", "6", "7"];
+  const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
   const colors = ["#CFA75A", "#826038"];
   const [selectedField, setSelectedField] = useState("");
   const [path, setPath] = useState([]);
   const [horsePosition, setHorsePosition] = useState("01");
   const [radio, setRadio] = useState("1");
+  const [showModal, setShowModal] = useState(false);
   
+  const renderHorsePosition = () => (
+    <div >
+      <h1 className="positionTitle">Posição atual do cavalo</h1>
+      <h2 className="positionText">{letters[parseInt(horsePosition[1])]}{parseInt(horsePosition[0]+1)}</h2>
+    </div>
+  )
+  
+
   useEffect(()=>{
     setPath([])
   }, [horsePosition])
@@ -38,6 +52,13 @@ function GameTable() {
     }
   };
 
+  const handleOpen = () =>{
+    setShowModal(true);
+    console.log(true);
+  }
+  const handleClose = () =>{
+    setShowModal(false);
+  }
   const renderField = () => {
     return (
       <div className="column">
@@ -62,10 +83,47 @@ function GameTable() {
     );
   };
 
+  const body = (
+    <div className="modal-container">
+      <div className="modal">
+        <div className="closeModal">
+          <p onClick={handleClose}>X</p>
+        </div>
+        <div className="modalContent">
+          <h2 id="simple-modal-title">Como funciona</h2><br/>
+          <p id="simple-modal-description">
+          {modalText}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section className="GameTable">
+      <Modal
+        open={showModal}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+     >
+        {body}
+      </Modal>
+      <div className="board-container">
+
+      </div>
       <div className="board">{renderField()}</div>
       <div className="button-container">
+      {renderHorsePosition()}
+        <div className="radio-container">
+          <div>
+            <input type="radio" value="0" onChange={(e) => handleRadio(e)} checked={radio === "0"}/><label>Posição inicial</label>
+          </div>
+          <div>
+            <input type="radio" value="1" onChange={(e) => handleRadio(e)} checked={radio === "1"}/><label>Posição final</label>
+          </div>
+        </div>
+
         <button
           className="start-button"
           disabled={!selectedField}
@@ -83,9 +141,8 @@ function GameTable() {
         >
           GERAR CAMINHO
         </button>
-      <label>Posição inicial</label><input type="radio" value="0" onChange={(e) => handleRadio(e)} checked={radio === "0"}/>
-      <label>Posição final</label><input type="radio" value="1" onChange={(e) => handleRadio(e)} checked={radio === "1"}/>
       </div>
+        <img src={infoIcon} className="icon" alt="" onClick={handleOpen}/>
     </section>
   );
 }

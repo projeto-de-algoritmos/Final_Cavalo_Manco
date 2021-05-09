@@ -8,7 +8,7 @@ function App() {
     <>
       <Navbar />
       <section className="content">
-        <Instructions />
+        {/* <Instructions /> */}
         <GameTable />
       </section>
     </>
