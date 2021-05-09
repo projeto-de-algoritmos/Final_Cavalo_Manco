@@ -1,5 +1,3 @@
-# Final_Lame_Horse
-
 # Cavalo Manco
 
 **Conteúdo da Disciplina**: Programação Dinâmica + Grafos<br>
