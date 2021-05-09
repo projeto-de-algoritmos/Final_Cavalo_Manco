@@ -40,17 +40,17 @@ class KnightBoard {
     }
   }
 
-  allKnightPositions(x, y) {
+  knightGraph(x, y) {
     if (!this.adjacentList[`${x},${y}`]) {
       this.knightPositions(x, y);
       this.adjacentList[`${x},${y}`].map((child) =>
-        this.allKnightPositions(child[0], child[1])
+        this.knightGraph(child[0], child[1])
       );
     }
   }
 
-  numberOfKnightMoves(xStart, yStart, xEnd, yEnd) {
-    this.allKnightPositions(xStart, yStart);
+  bellmanFord(xStart, yStart, xEnd, yEnd) {
+    this.knightGraph(xStart, yStart);
     const distance = {};
     const previous = {};
     for (let key in this.adjacentList) {
@@ -70,11 +70,11 @@ class KnightBoard {
         }
       });
     });
-    const path = this.getPath(previous, [xEnd, yEnd]);
+    const path = this.shortestPath(previous, [xEnd, yEnd]);
     return path;
   }
 
-  getPath(previous, end) {
+  shortestPath(previous, end) {
     const path = [end];
     let lastOne = previous[end];
     while (lastOne) {
@@ -85,3 +85,5 @@ class KnightBoard {
     return path;
   }
 }
+
+export default new KnightBoard();

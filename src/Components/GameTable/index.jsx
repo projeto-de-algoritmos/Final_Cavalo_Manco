@@ -1,20 +1,20 @@
 import "./styles.css";
 import Field from "../Field";
 import { useState } from "react";
+import KnightBoard from "../../utils/KnightBoard";
+import stringParser from "../../utils/stringParser";
 
 function GameTable() {
   const fieldHorizontal = ["0", "1", "2", "3", "4", "5", "6", "7"];
   const fieldVertical = ["0", "1", "2", "3", "4", "5", "6", "7"];
   const colors = ["#CFA75A", "#826038"];
   const [selectedField, setSelectedField] = useState("");
+  const [path, setPath] = useState([]);
 
-  const getColor = (letter, number) => {
-    const stringNum = letter.charCodeAt(0);
-    const numberNum = parseInt(number);
-    if (
-      (stringNum % 2 && numberNum % 2) ||
-      (stringNum % 2 !== 1 && numberNum % 2 !== 1)
-    )
+  const getColor = (numCol, numRow) => {
+    const intRow = parseInt(numCol);
+    const intCol = parseInt(numRow);
+    if ((intRow % 2 && intCol % 2) || (intRow % 2 !== 1 && intCol % 2 !== 1))
       return colors[0];
     else return colors[1];
   };
@@ -28,15 +28,17 @@ function GameTable() {
   const renderField = () => {
     return (
       <div className="column">
-        {fieldHorizontal.map((letter) => (
-          <div className="row">
-            {fieldVertical.map((number) => (
+        {fieldHorizontal.map((numberColumn, index) => (
+          <div className="row" key={index}>
+            {fieldVertical.map((numberRow) => (
               <Field
-                key={letter + number}
-                pos={`${letter}${number}`}
-                color={getColor(letter, number)}
-                isSelected={selectedField === `${letter}${number}`}
-                onPress={() => selectField(`${letter}${number}`)}
+                key={numberColumn + numberRow}
+                pos={`${numberColumn}${numberRow}`}
+                color={getColor(numberColumn, numberRow)}
+                isSelected={selectedField === `${numberColumn}${numberRow}`}
+                path={path}
+                timer={path.indexOf(`${numberColumn}${numberRow}`)}
+                onPress={() => selectField(`${numberColumn}${numberRow}`)}
               />
             ))}
           </div>
@@ -49,8 +51,22 @@ function GameTable() {
     <section className="GameTable">
       <div className="board">{renderField()}</div>
       <div className="button-container">
-        <button className="start-button"> GERAR CAMINHO </button>
-        <button className="reset-button"> TENTAR NOVAMENTE </button>
+        <button
+          className="start-button"
+          disabled={!selectedField}
+          onClick={() => {
+            const x = parseInt(selectedField[0]);
+            const y = parseInt(selectedField[1]);
+            setPath(stringParser(KnightBoard.bellmanFord(0, 1, x, y)));
+          }}
+        >
+          GERAR CAMINHO
+        </button>
+        <button className="reset-button" onClick={() => {
+          console.log(path);
+        }}>
+          TENTAR NOVAMENTE
+        </button>
       </div>
     </section>
   );

@@ -1,40 +1,59 @@
-.gametable{
-    width:50vw;
-    box-sizing: border-box;
-    padding: 1vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content:center;
+.gametable {
+  width: 50vw;
+  box-sizing: border-box;
+  padding: 1vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.board{
-    margin: 5vh 0vh;
-    display: flex;
-    width:72vh;
-    height: 72vh;
-    background-color: black;
+.board {
+  margin: 5vh 0vh;
+  display: flex;
+  width: 72vh;
+  height: 72vh;
+  background-color: black;
 }
-.row{
-    display: flex;
+.row {
+  display: flex;
 }
-.button-container{
-    display: flex;
-    align-items: space-between;
-    justify-content: space-around;
-}
-.button-container button{
-    width: 15vw;
-    height: 7vh;
-    color: white;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 0.3rem;
-}
-.start-button{
-    background-color: #08A550;
+.button-container {
+  display: flex;
+  align-items: space-between;
+  justify-content: space-around;
 }
 
-.reset-button{
-    background-color: #DF1C3F;
+button:hover {
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 80%;
+}
+
+.button-container button {
+  width: 15vw;
+  height: 7vh;
+  color: white;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 0.3rem;
+}
+.start-button {
+  background-color: #08a550;
+}
+
+.start-button:disabled {
+  background-color: #08a55180;
+  cursor: auto;
+}
+
+.reset-button {
+  background-color: #df1c3f;
+}
+
+.reset-button:disabled {
+  background-color: #df1c4080;
+  cursor: auto;
 }

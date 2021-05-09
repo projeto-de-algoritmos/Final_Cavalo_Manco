@@ -1,11 +1,18 @@
 import "./styles.css";
 import chessHorse from "../../assets/ChessHorse.png";
+import { useState } from "react";
 function Field(props) {
+  const [wait, setWait] = useState(true);
   const renderContent = () => {
     if (props.pos === "01") {
-      return <img src={chessHorse} alt=""/>;
+      return <img src={chessHorse} alt="" />;
     } else if (props.isSelected) {
       return <div className="ball" />;
+    } else if (props.path.includes(props.pos)) {
+      setTimeout(()=>{
+        setWait(false)
+      }, 1000*(props.timer+1))
+      return <div className="redBall" hidden={wait}/>;
     }
     return <></>;
   };
