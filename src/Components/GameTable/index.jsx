@@ -20,7 +20,7 @@ function GameTable() {
 
   const renderHorsePosition = () => (
     <div>
-      <h1 className="positionTitle">Posição atual do cavalo</h1>
+      <h1 className="positionTitle">>Inicio e fim</h1>
       <h2 className="positionText">
         {letters[parseInt(horsePosition[1])]}
         {parseInt(horsePosition[0]) + 1}
